@@ -5,7 +5,7 @@ import datetime
 '''
 def normalise_carac(df):
     df.an = df.an + 2000
-    df = gen_date(replace_lum(replace_agglo(replace_adr(replace_gps(replace_intersection(replace_conditions_atmo(replace_collision(replace_etatp(replace_sexe(replace_trajet(replace_locp(replace_grav(replace_catu(replace_place(replace_actp(replace_catr(replace_circ(replace_infra(replace_plan(replace_prof(replace_situ(replace_surf(replace_surf(replace_vosp(replace_choc(replace_manv(replace_obsm(replace_catv(replace_senc(replace_obs(df)))))))))))))))))))))))))))))))
+    df = gen_date(replace_lum(replace_agglo(replace_adr(replace_gps(replace_intersection(replace_conditions_atmo(replace_collision(replace_etatp(replace_sexe(replace_trajet(replace_locp(replace_grav(replace_catu(replace_place(replace_actp(replace_catr(replace_circ(replace_infra(replace_plan(replace_prof(replace_situ(replace_surf(replace_surf(replace_vosp(replace_choc(replace_manv(replace_obsm(replace_catv(replace_senc(replace_obs(add_gcat(df))))))))))))))))))))))))))))))))
     df = replace_dep(replace_com(df))
     df = df.rename(columns={"agg":"agglo","dep":"code_postal"})
     df = df.drop(columns=['mois','jour','hrmn','an','com'])
@@ -158,6 +158,10 @@ def replace_obs(df):
 
 def replace_catv(df):
     df.catv = df.catv.replace(1, 'Bicyclette').replace(2, 'Cyclomoteur <50cm3').replace(3, 'Voiturette').replace(4, 'Scooter immatriculé').replace(5, 'Motocyclette').replace(6, 'Side-Car').replace(7, 'Véhicule Léger seul').replace(8, 'Véhicule léger + caravane').replace(9, 'Véhicule léger + remorque').replace(10, 'Véhicule Utilitaire seul').replace(11, 'Véhicule Utilitaire + caravane').replace(12, 'Véhicule Utilitaire + remorque').replace(13, 'Poids Lourd < 7.5T seul').replace(14, 'Poids Lourd > 7.5T seul').replace(15, 'Poids Lourd > 3.5T + remorque').replace(16, 'Tracteur Routier seul').replace(17, 'Tracteur routier + semi-remorque').replace(18, 'Transport en commun').replace(19, 'Tramway').replace(20, 'Engin spécial').replace(21, 'Tracteur agricole').replace(30, 'Scooter < 50 cm3').replace(31, 'Motocyclette > 50 cm3   et <= 125 cm3').replace(32, 'Scooter > 50 cm3 et <= 125 cm3').replace(33, 'Motocyclette > 125 cm3').replace(34, 'Scooter > 125 cm3').replace(35, 'Quad léger <= 50 cm3').replace(36, 'Quad léger > 50 cm3').replace(37, 'Autobus').replace(38, 'Autocar').replace(39, 'Train').replace(40, 'Tramway').replace(99, 'Autre véhicule')
+    return df
+
+def add_gcat(df):
+    df['gcat'] = df.catv.replace(1, 'Véhicule personnel léger').replace(2, 'Véhicule personnel léger').replace(3, 'Véhicule personnel léger').replace(4, 'Véhicule personnel léger').replace(5, 'Véhicule personnel léger').replace(6, 'Véhicule personnel léger').replace(7, 'Voiture').replace(8, 'Voiture').replace(9, 'Voiture').replace(10, 'Véhicule Utilitaire').replace(11, 'Véhicule Utilitaire').replace(12, 'Véhicule Utilitaire').replace(13, 'Poids Lourd').replace(14, 'Poids Lourd').replace(15, 'Poids Lourd').replace(16, 'Tracteur').replace(17, 'Tracteur').replace(18, 'Transport en commun').replace(19, 'Transport en commun').replace(20, 'Autre véhicule').replace(21, 'Tracteur').replace(30, '2 roues').replace(31, '2 roues').replace(32, '2 roues').replace(33, '2 roues').replace(34, '2 roues').replace(35, 'Véhicule personnel léger').replace(36, 'Véhicule personnel léger').replace(37, 'Transport en commun').replace(38, 'Transport en commun').replace(39, 'Transport en commun').replace(40, 'Transport en commun').replace(99, 'Autre véhicule')
     return df
 
 def replace_obsm(df):
