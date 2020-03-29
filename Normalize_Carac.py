@@ -4,13 +4,13 @@ import datetime
     Normalisation des données de type caractéristique
 '''
 def normalise_carac(df):
-    # df.an = df.an + 2000
+    df.an = df.an + 2000
     df = gen_date(replace_lum(replace_agglo(replace_adr(replace_gps(replace_intersection(replace_conditions_atmo(replace_collision(replace_etatp(replace_sexe(replace_trajet(replace_locp(replace_grav(replace_catu(replace_place(replace_actp(replace_catr(replace_circ(replace_infra(replace_plan(replace_prof(replace_situ(replace_surf(replace_surf(replace_vosp(replace_choc(replace_manv(replace_obsm(replace_catv(replace_senc(replace_obs(df)))))))))))))))))))))))))))))))
-    # df = replace_dep(replace_com(df))
-    # df = df.rename(columns={"agg":"agglo","dep":"code_postal"})
-    # df = df.drop(columns=['mois','jour','hrmn','an','com'])
-    # df = df.rename(index=df.Num_Acc)
-    # df = df.fillna(value={"place": "Inconnu", "actp": 0, "locp": "Inconnu", "etatp": "Inconnu"})
+    df = replace_dep(replace_com(df))
+    df = df.rename(columns={"agg":"agglo","dep":"code_postal"})
+    df = df.drop(columns=['mois','jour','hrmn','an','com'])
+    df = df.rename(index=df.Num_Acc)
+    df = df.fillna(value={"place": "Inconnu", "actp": 0, "locp": "Inconnu", "etatp": "Inconnu"})
     return df
 
 
@@ -161,7 +161,7 @@ def replace_catv(df):
     return df
 
 def replace_obsm(df):
-    df.obsm = df.obsm.replace(1, 'Piéton').replace(2, 'Véhicule').replace(3, 'Véhicule sur rail').replace(4, 'Animal domestique').replace(5, 'Animal sauvage').replace(6, 'Autre')
+    df.obsm = df.obsm.replace(1, 'Piéton').replace(2, 'Véhicule').replace(3, 'Véhicule sur rail').replace(4, 'Animal domestique').replace(5, 'Animal sauvage').replace(9, 'Autre').replace(0, 'Aucun')
     return df
 
 def replace_choc(df):
