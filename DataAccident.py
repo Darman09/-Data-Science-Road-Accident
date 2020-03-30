@@ -22,6 +22,7 @@ def getData2018Merge():
 
     # Correction for dupplicate data
     Data2018merge = Data2018merge[Data2018merge['num_veh_x'] == Data2018merge['num_veh_y']]
+    Data2018merge['Num_Acc_Id'] = Data2018merge.Num_Acc
 
     # Affichage data
     Data2018merge = Data2018merge.set_index(['Num_Acc','num_veh_x','num_veh_y'])
