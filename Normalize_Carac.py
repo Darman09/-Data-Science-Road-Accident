@@ -10,7 +10,7 @@ def normalise_carac(df):
     df = df.rename(columns={"agg":"agglo","dep":"code_postal"})
     df = df.drop(columns=['mois','jour','hrmn','an','com'])
     df = df.rename(index=df.Num_Acc)
-    df = df.fillna(value={"place": "Inconnu", "actp": 0, "locp": "Inconnu", "etatp": "Inconnu"})
+    df = df.fillna(value={"place": "Inconnu", "actp": 0, "locp": "Inconnu", "etatp": "Inconnu","an_nais":0.0})
     return df
 
 
