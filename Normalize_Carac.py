@@ -8,7 +8,7 @@ def normalise_carac(df):
     df = gen_date(replace_lum(replace_agglo(replace_adr(replace_gps(replace_intersection(replace_conditions_atmo(replace_collision(replace_etatp(replace_sexe(replace_trajet(replace_locp(replace_grav(replace_catu(replace_place(replace_actp(replace_catr(replace_circ(replace_infra(replace_plan(replace_prof(replace_situ(replace_surf(replace_surf(replace_vosp(replace_choc(replace_manv(replace_obsm(replace_catv(replace_senc(replace_obs(add_gcat(df))))))))))))))))))))))))))))))))
     df = replace_dep(replace_com(df))
     df = df.rename(columns={"agg":"agglo","dep":"code_postal"})
-    df = df.drop(columns=['mois','jour','hrmn','an','com'])
+    df = df.drop(columns=['jour','hrmn','com'])
     df = df.rename(index=df.Num_Acc)
     df = df.fillna(value={"place": "Inconnu", "actp": 0, "locp": "Inconnu", "etatp": "Inconnu","an_nais":0.0})
     return df
