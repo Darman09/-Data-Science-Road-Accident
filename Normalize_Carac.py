@@ -10,7 +10,7 @@ def normalise_carac(df):
     df = df.rename(columns={"agg":"agglo","dep":"code_postal"})
     df = df.drop(columns=['jour','hrmn','com'])
     df = df.rename(index=df.Num_Acc)
-    df = df.fillna(value={"place": "Inconnu", "actp": 0, "locp": "Inconnu", "etatp": "Inconnu","an_nais":0.0})
+    df = df.fillna(value={"place": "Inconnu", "actp": 0, "locp": "Inconnu", "etatp": "Inconnu","an_nais":0.0,"lat":0.0,"long":0.0})
     return df
 
 
@@ -84,7 +84,7 @@ def replace_grav(df):
 
 # Remplace le sexe de l'usager
 def replace_sexe(df):
-    df.sexe = df.sexe.replace(1,'Masculin').replace(2,'Féminin')
+    df.sexe = df.sexe.replace(1,'Homme').replace(2,'Femme')
     return df
 
 # Remplace le motif du déplacement au moment de l'accident
@@ -109,7 +109,7 @@ def replace_etatp(df):
 
 # Replacement catr (Categorie de route)
 def replace_catr(df):
-    df.catr = df.catr.replace(1, 'Autoroute').replace(2, 'Route Nationale').replace(3, 'Route Départementale').replace(4, 'Voie Communale').replace(5, 'Hors réseau public').replace(6, ' Parc de stationnement ouvert à la circulation publique').replace(9, 'Autre')
+    df.catr = df.catr.replace(1, 'Autoroute').replace(2, 'Route Nationale').replace(3, 'Route Departementale').replace(4, 'Voie Communale').replace(5, 'Hors réseau public').replace(6, ' Parc de stationnement ouvert a la circulation publique').replace(9, 'Autre').replace(7, 'Autre')
     return df
 # Replacement circ (Régime de circulation)
 def replace_circ(df):
